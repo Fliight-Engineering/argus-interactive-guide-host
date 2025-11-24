@@ -92,7 +92,7 @@ const config = {
           {
             type: 'html',
             position: 'right',
-            value: '<img src="/img/vts-guide/fliight-logo.png" alt="Fliight" style="height: 32px; margin-left: 16px;" />',
+            value: '<img src="/argus-interactive-guide/img/vts-guide/fliight-logo.png" alt="Fliight" style="height: 32px; margin-left: 16px;" />',
           },
         ],
       },
