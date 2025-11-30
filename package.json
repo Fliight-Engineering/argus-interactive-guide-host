@@ -4,14 +4,30 @@
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
-    "start": "docusaurus start",
+    "start": "docusaurus start --host 0.0.0.0",
     "build": "docusaurus build",
+    "build:offline": "OFFLINE_BUILD=true docusaurus build",
+    "build:mac": "npm run build:offline && bash create-mac-app.sh",
+    "build:windows": "npm run build:offline && node create-windows-exe.js",
+    "build:electron": "npm run build:offline && npm run electron:build",
+    "build:electron:win-x64": "npm run build:offline && cd electron && npm run build:win-x64",
+    "electron:dev": "cd electron && npm start",
+    "electron:build": "cd electron && npm run build",
+    "launch": "node launcher.js",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
+    "serve:offline": "OFFLINE_BUILD=true docusaurus build && docusaurus serve --port 3000 --host 0.0.0.0",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids"
+  },
+  "devDependencies": {
+    "@docusaurus/module-type-aliases": "3.9.2",
+    "@docusaurus/types": "3.9.2",
+    "electron": "^28.3.3",
+    "electron-builder": "^24.13.3",
+    "pkg": "^5.8.1"
   },
   "dependencies": {
     "@docusaurus/core": "3.9.2",
@@ -21,10 +37,6 @@
     "prism-react-renderer": "^2.3.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
-  },
-  "devDependencies": {
-    "@docusaurus/module-type-aliases": "3.9.2",
-    "@docusaurus/types": "3.9.2"
   },
   "browserslist": {
     "production": [

@@ -23,33 +23,35 @@ const sidebars = {
       label: 'Home',
     },
     'about-vts',
-    'system-components',
+    'argus-software',
+    'access-points',
+    'remote-camera-systems',
+    'trainers-tablet',
     {
       type: 'category',
-      label: 'Access Points',
+      label: 'Set Up and Operation',
+      link: {
+        type: 'doc',
+        id: 'setup-operation/index',
+      },
       items: [
-        'access-points/index',
-        'access-points/positioning',
-      ],
-    },
     {
-      type: 'category',
-      label: 'Remote Camera Systems',
-      items: [
-        'remote-camera-systems/index',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Setup & Operation',
-      items: [
-        'setup-operation/index',
+          type: 'doc',
+          id: 'setup-operation/index',
+          label: 'Overview',
+        },
+        'setup-operation/access-points-initialization',
+        'setup-operation/cameras',
         'setup-operation/tablet-setup',
         'setup-operation/vehicle-setup',
-        'setup-operation/operation',
+        'setup-operation/access-points-deployment',
+        {
+          type: 'doc',
+          id: 'setup-operation/best-practices',
+          label: 'Best Practices',
+        },
       ],
     },
-    'troubleshooting',
   ],
 };
 

@@ -1,8 +1,14 @@
 # Dependencies
 /node_modules
+/electron/node_modules
 
 # Production
 /build
+
+# Build artifacts
+/artifacts
+/electron/dist-electron
+/VTS Guide.app
 
 # Generated files
 .docusaurus

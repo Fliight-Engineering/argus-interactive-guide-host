@@ -1,0 +1,191 @@
+.carouselContainer {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.carousel {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+}
+
+.slideContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 3rem;
+  gap: 2rem;
+}
+
+.imageContainer {
+  width: 100%;
+  max-height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.slideImage {
+  max-width: 100%;
+  max-height: 400px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.textContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.slideTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #0d343d;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.slideText {
+  font-size: 1.25rem;
+  line-height: 1.8;
+  color: #333;
+}
+
+.stepsList {
+  font-size: 1.25rem;
+  line-height: 2;
+  color: #333;
+  padding-left: 1.5rem;
+  margin: 0;
+}
+
+.stepItem {
+  margin-bottom: 1rem;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 3rem;
+  background: #f8f9fa;
+  border-top: 1px solid #e0e0e0;
+}
+
+.navButton {
+  background: #0d343d;
+  color: #ffffff;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 120px;
+}
+
+.navButton:hover {
+  background: #0a2a32;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(13, 52, 61, 0.3);
+}
+
+.navButton:active {
+  transform: translateY(0);
+}
+
+.dots {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid #0d343d;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.dot:hover {
+  background: #0d343d;
+  opacity: 0.7;
+}
+
+.activeDot {
+  background: #0d343d;
+  width: 16px;
+  height: 16px;
+}
+
+.counter {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(13, 52, 61, 0.9);
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.carousel {
+  position: relative;
+}
+
+/* Mobile responsive */
+@media screen and (max-width: 768px) {
+  .carouselContainer {
+    padding: 1rem;
+  }
+
+  .slideContent {
+    padding: 2rem 1.5rem;
+  }
+
+  .slideTitle {
+    font-size: 2rem;
+  }
+
+  .slideText,
+  .stepsList {
+    font-size: 1.1rem;
+  }
+
+  .navigation {
+    padding: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .navButton {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    min-width: 100px;
+  }
+
+  .counter {
+    top: 0.5rem;
+    right: 0.5rem;
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+

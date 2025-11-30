@@ -1,0 +1,62 @@
+{
+  "name": "vts-guide-electron",
+  "version": "1.0.0",
+  "description": "VTS Guide - Electron App",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "build:win-x64": "electron-builder --win --x64",
+    "build:win-arm64": "electron-builder --win --arm64"
+  },
+  "build": {
+    "appId": "com.fliight.vtsguide",
+    "productName": "VTS Guide",
+    "directories": {
+      "output": "../artifacts/dist-electron"
+    },
+    "files": [
+      "main.js",
+      {
+        "from": "../build",
+        "to": "build",
+        "filter": ["**/*"]
+      }
+    ],
+    "extraResources": [
+      {
+        "from": "../build",
+        "to": "build",
+        "filter": ["**/*"]
+      }
+    ],
+    "mac": {
+      "category": "public.app-category.reference",
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "icon": "../static/img/vts-guide/image29.png"
+    },
+    "win": {
+      "target": [
+        "dir",
+        "nsis",
+        "portable"
+      ],
+      "icon": "../static/img/vts-guide/image29.png",
+      "artifactName": "${productName}-${version}-${arch}.${ext}"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "icon": "../static/img/vts-guide/image29.png"
+    }
+  },
+  "devDependencies": {
+    "electron": "^39.2.3",
+    "electron-builder": "^26.0.12"
+  }
+}

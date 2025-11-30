@@ -8,6 +8,12 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
+// Determine baseUrl based on build type
+// For offline/local deployment, set OFFLINE_BUILD=true to use '/'
+// For GitHub Pages, use '/argus-interactive-guide-host/'
+const isOfflineBuild = process.env.OFFLINE_BUILD === 'true';
+const baseUrl = isOfflineBuild ? '/' : '/argus-interactive-guide-host/';
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Argus Video Training System',
@@ -22,8 +28,7 @@ const config = {
   // Set the production url of your site here
   url: 'https://fliight-engineering.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/argus-interactive-guide-host/',
+  baseUrl: baseUrl,
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -86,13 +91,13 @@ const config = {
         title: 'Argus VTS',
         logo: {
           alt: 'Argus VTS Logo',
-          src: 'img/vts-guide/image29.png',
+          src: 'img/vts-guide/argus-logo.png',
         },
         items: [
           {
             type: 'html',
             position: 'right',
-            value: '<img src="/argus-interactive-guide-host/img/vts-guide/fliight-logo.png" alt="FLIIGHT" style="height: 40px; padding: 0 1rem;" />',
+            value: `<img src="${baseUrl}img/vts-guide/fliight-logo-black.png" alt="FLIIGHT" class="fliight-logo-light" style="height: 28px; padding: 0 1rem;" /><img src="${baseUrl}img/vts-guide/fliight-logo-white.png" alt="FLIIGHT" class="fliight-logo-dark" style="height: 28px; padding: 0 1rem;" />`,
           },
         ],
       },

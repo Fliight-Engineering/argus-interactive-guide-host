@@ -6,38 +6,68 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
+  --ifm-color-primary: #00B050;
+  --ifm-color-primary-dark: #009d47;
+  --ifm-color-primary-darker: #009443;
+  --ifm-color-primary-darkest: #007a37;
+  --ifm-color-primary-light: #00c359;
+  --ifm-color-primary-lighter: #00cc5d;
+  --ifm-color-primary-lightest: #00e66a;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
+  --ifm-color-primary: #00B050;
+  --ifm-color-primary-dark: #009d47;
+  --ifm-color-primary-darker: #009443;
+  --ifm-color-primary-darkest: #007a37;
+  --ifm-color-primary-light: #00c359;
+  --ifm-color-primary-lighter: #00cc5d;
+  --ifm-color-primary-lightest: #00e66a;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
-/* Custom Barmico branding - Blue navbar */
+/* Custom Barmico branding - Theme-aware navbar */
 .navbar {
-  background-color: #0d343d !important;
-  /* Blue color matching Barmico logo */
+  background-color: #e5e5e5;
+  min-height: 55px;
+  height: auto;
 }
 
+/* Dark mode navbar */
+[data-theme='dark'] .navbar {
+  background-color: #1a1a1a;
+}
+
+/* Navbar height and centering */
+:root {
+  --ifm-navbar-height: 55px;
+}
+
+.navbar__inner {
+  min-height: 55px;
+  align-items: center;
+}
+
+.navbar__items {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+/* Light mode - black text */
 .navbar__title,
 .navbar__link,
 .navbar__item {
+  color: #000000 !important;
+}
+
+/* Dark mode - white text */
+[data-theme='dark'] .navbar__title,
+[data-theme='dark'] .navbar__link,
+[data-theme='dark'] .navbar__item {
   color: #ffffff !important;
 }
 
@@ -46,10 +76,26 @@
   color: #e0e0e0 !important;
 }
 
-/* Adjust logo size for better visibility */
+/* Adjust logo size for better visibility - centered in navbar */
+.navbar__logo {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0;
+}
+
 .navbar__logo img {
-  height: 40px;
+  height: 35px;
   width: auto;
+  max-height: 45px;
+}
+
+.navbar__title {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin-left: 0.5rem;
+  font-size: 1.4em;
 }
 
 /* Hero banner with Barmico dark blue-green */
@@ -61,4 +107,921 @@
 .hero__title,
 .hero__subtitle {
   color: #ffffff !important;
+}
+
+/* Hide footer */
+.footer {
+  display: none !important;
+}
+
+/* Theme toggle icon - black in light mode, white in dark mode */
+.navbar__item--right button[class*="theme"] svg,
+.navbar__item--right a[class*="theme"] svg,
+.navbar__item--right [aria-label*="theme"] svg,
+.navbar__item--right [aria-label*="Theme"] svg {
+  color: #000000 !important;
+  fill: #000000 !important;
+}
+
+[data-theme='dark'] .navbar__item--right button[class*="theme"] svg,
+[data-theme='dark'] .navbar__item--right a[class*="theme"] svg,
+[data-theme='dark'] .navbar__item--right [aria-label*="theme"] svg,
+[data-theme='dark'] .navbar__item--right [aria-label*="Theme"] svg {
+  color: #ffffff !important;
+  fill: #ffffff !important;
+}
+
+.navbar__item--right button[class*="theme"]:hover svg,
+.navbar__item--right a[class*="theme"]:hover svg,
+.navbar__item--right [aria-label*="theme"]:hover svg,
+.navbar__item--right [aria-label*="Theme"]:hover svg {
+  color: #e0e0e0 !important;
+  fill: #e0e0e0 !important;
+}
+
+/* FLIIGHT logo on right should also be properly sized */
+.navbar__item--right {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.navbar__item--right img {
+  max-height: 28px;
+  height: auto;
+  width: auto;
+}
+
+/* Theme-aware FLIIGHT logo - hide/show based on theme */
+img.fliight-logo-light {
+  display: block !important;
+}
+
+img.fliight-logo-dark {
+  display: none !important;
+}
+
+[data-theme='dark'] img.fliight-logo-light {
+  display: none !important;
+}
+
+[data-theme='dark'] img.fliight-logo-dark {
+  display: block !important;
+}
+
+/* Theme toggle button centered */
+.navbar__item--right .colorModeToggle_DEke {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.navbar__item--right button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Image container for VTS kit */
+.vts-kit-image-container {
+  background-color: transparent;
+  border-radius: 16px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+.highlight-card .card-content .vts-kit-image-container {
+  margin-top: 1.5rem;
+  margin-bottom: 0;
+}
+
+.vts-kit-image-container img {
+  max-width: 100%;
+  width: 900px;
+  height: auto;
+  image-rendering: auto;
+  -webkit-font-smoothing: auto;
+}
+
+/* Side-by-side image layout for Access Points */
+.ap-images-container {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 2rem 0;
+  flex-wrap: wrap;
+}
+
+.ap-image-wrapper {
+  flex: 1;
+  min-width: 300px;
+  max-width: 500px;
+  text-align: center;
+}
+
+.ap-image-wrapper img {
+  height: 400px;
+  width: auto;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+/* Table-like layout for RCS sections */
+.rcs-section-container {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  grid-template-rows: auto 1fr;
+  gap: 1rem 1.5rem;
+  margin: 1rem 0;
+  align-items: start;
+}
+
+.rcs-section-title {
+  grid-column: 1;
+  grid-row: 1;
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.rcs-text-content {
+  grid-column: 1;
+  grid-row: 2;
+  margin: 0;
+}
+
+.rcs-text-content p {
+  margin: 0;
+}
+
+.rcs-text-content ul {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+}
+
+.rcs-image-content {
+  grid-column: 2;
+  grid-row: 1 / 3;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rcs-image-content img {
+  max-width: 100%;
+  height: auto;
+  max-height: 250px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+/* Reduce spacing in RCS page sections */
+.rcs-section-container + h2 {
+  margin-top: 1.5rem !important;
+}
+
+h2 + .rcs-section-container {
+  margin-top: 0.5rem !important;
+}
+
+/* Reduce heading spacing on RCS page */
+.markdown h2 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.markdown h2:first-of-type {
+  margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  .rcs-section-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+  }
+  
+  .rcs-section-title {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  
+  .rcs-text-content {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  
+  .rcs-image-content {
+    grid-column: 1;
+    grid-row: 3;
+  }
+}
+
+@media (max-width: 768px) {
+  .rcs-section-container {
+    flex-direction: column;
+  }
+  
+  .rcs-image-content {
+    flex: 1;
+    max-width: 100%;
+  }
+}
+
+/* Machine AP Setup 2x2 grid */
+.machine-ap-setup-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.machine-ap-setup-grid img {
+  width: 100%;
+  height: 300px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .machine-ap-setup-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Access Points Power and LED sections - side by side layout */
+.ap-power-section,
+.ap-led-section {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  margin: 1.5rem 0;
+}
+
+.ap-power-text,
+.ap-led-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.ap-led-text table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+.ap-led-text table th,
+.ap-led-text table td {
+  padding: 0.75rem;
+  text-align: left;
+  border: 1px solid var(--ifm-table-border-color);
+}
+
+.ap-led-text table th {
+  background-color: var(--ifm-table-head-background);
+  font-weight: 600;
+}
+
+.ap-led-text table tr:nth-child(even) {
+  background-color: var(--ifm-table-stripe-background);
+}
+
+/* General table styling improvements */
+.markdown table {
+  width: 100%;
+  margin: 1.5rem 0;
+  border-collapse: collapse;
+  border: 1px solid var(--ifm-table-border-color);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.markdown table th {
+  background-color: var(--ifm-table-head-background);
+  font-weight: 600;
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 2px solid var(--ifm-table-border-color);
+}
+
+.markdown table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--ifm-table-border-color);
+}
+
+.markdown table tr:last-child td {
+  border-bottom: none;
+}
+
+.markdown table tr:nth-child(even) {
+  background-color: var(--ifm-table-stripe-background);
+}
+
+.markdown table tr:hover {
+  background-color: var(--ifm-table-head-background);
+  transition: background-color 0.2s ease;
+}
+
+.ap-power-image,
+.ap-led-image {
+  flex: 0 0 300px;
+  text-align: center;
+}
+
+.ap-power-image img,
+.ap-led-image img {
+  max-width: 100%;
+  height: auto;
+  max-height: 300px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .ap-power-section,
+  .ap-led-section {
+    flex-direction: column;
+  }
+  
+  .ap-power-image,
+  .ap-led-image {
+    flex: 1;
+    max-width: 100%;
+  }
+}
+
+/* Camera Power section - side by side layout */
+.camera-power-section {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  margin: 1.5rem 0;
+}
+
+.camera-power-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.camera-power-image {
+  flex: 0 0 300px;
+  text-align: center;
+}
+
+.camera-power-image img {
+  max-width: 100%;
+  height: auto;
+  max-height: 300px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .camera-power-section {
+    flex-direction: column;
+  }
+  
+  .camera-power-image {
+    flex: 1;
+    max-width: 100%;
+  }
+}
+
+/* Tablet setup images - consistent width */
+.tablet-image-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+.tablet-image-container img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Antenna configuration images - side by side */
+.antenna-images-container {
+  display: flex;
+  gap: 1rem;
+  margin: 1.5rem 0;
+  flex-wrap: wrap;
+}
+
+.antenna-image-wrapper {
+  flex: 1;
+  min-width: 200px;
+}
+
+.antenna-image-wrapper img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+/* Limit antenna image width in best practice cards */
+.best-practice-card .antenna-image-wrapper {
+  max-width: 50%;
+  margin: 1.5rem auto;
+}
+
+/* Image wrapper for 70% width */
+.image-wrapper-70 {
+  max-width: 70%;
+  margin: 1.5rem auto;
+}
+
+.image-wrapper-70 img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.image-wrapper-70 em {
+  display: block;
+  text-align: center;
+  margin: 0.5rem auto 0;
+  font-style: italic;
+}
+
+.image-wrapper-margin-top {
+  margin-top: 1rem;
+}
+
+/* Image info card - reusable layout for text + image side-by-side */
+.image-info-card {
+  width: 100%;
+  border-collapse: collapse;
+  border: none !important;
+  margin: 0 !important;
+  border-spacing: 0;
+  box-shadow: none !important;
+}
+
+.image-info-card th,
+.image-info-card td {
+  border: none !important;
+  border-bottom: none !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  padding: 0 !important;
+  vertical-align: middle;
+}
+
+.image-info-card tr {
+  border: none !important;
+}
+
+.image-info-card tr:last-child td {
+  border-bottom: none !important;
+}
+
+.image-info-card-text {
+  width: 60%;
+  padding-right: 1rem !important;
+  font-size: 1em;
+  line-height: 1.5;
+  vertical-align: top;
+  text-align: left;
+}
+
+.image-info-card-image {
+  width: 30%;
+  text-align: center !important;
+  vertical-align: middle;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.image-info-card-image img {
+  max-width: 280px;
+  width: auto;
+  height: auto;
+  max-height: 280px;
+  object-fit: contain;
+  border-radius: 8px;
+  margin: 0 auto !important;
+  display: block;
+  vertical-align: middle;
+}
+
+.image-info-card-image em {
+  display: block;
+  text-align: center;
+  margin-top: 0.5rem;
+  font-style: italic;
+  font-size: 0.9em;
+}
+
+/* Battery info table layout */
+.battery-info-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: none !important;
+  margin: 0 !important;
+  border-spacing: 0;
+  box-shadow: none !important;
+}
+
+.highlight-card .card-content {
+  padding: 1rem;
+}
+
+.highlight-card .card-content > .battery-info-table,
+.highlight-card .card-content > .image-info-card {
+  margin: 0 !important;
+}
+
+.highlight-card .card-content:has(> .battery-info-table),
+.highlight-card .card-content:has(> .image-info-card),
+.highlight-card .card-content:has(.vts-kit-image-container) {
+  padding: 0 !important;
+}
+
+.battery-info-table th,
+.battery-info-table td {
+  border: none !important;
+  border-bottom: none !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  padding: 0 !important;
+  vertical-align: top;
+}
+
+.battery-info-table tr {
+  height: 100%;
+}
+
+.battery-info-table tr {
+  border: none !important;
+}
+
+.battery-info-table tr:last-child td {
+  border-bottom: none !important;
+}
+
+.battery-info-text {
+  width: 60%;
+  padding-right: 1rem !important;
+  font-size: 1.15em;
+  line-height: 1.5;
+}
+
+.battery-info-image {
+  width: 30%;
+  text-align: right !important;
+  vertical-align: middle;
+  padding-left: 1rem;
+}
+
+.battery-info-image img {
+  max-width: 225px;
+  width: auto;
+  height: auto;
+  max-height: 225px;
+  object-fit: contain;
+  border-radius: 8px;
+  margin: 0 !important;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.battery-info-image em {
+  display: block;
+  text-align: center;
+  margin-top: 0.5rem;
+  font-style: italic;
+  font-size: 0.9em;
+}
+
+/* Image wrapper for 90% width */
+.image-wrapper-90 {
+  max-width: 90%;
+  margin: 1.5rem auto;
+}
+
+.image-wrapper-90 img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.image-wrapper-90 em {
+  display: block;
+  text-align: center;
+  margin: 0.5rem auto 0;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .antenna-images-container {
+    flex-direction: column;
+  }
+  
+  .antenna-image-wrapper {
+    min-width: 100%;
+  }
+}
+
+/* Best Practices Card Layout */
+.best-practices-intro {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background-color: var(--ifm-background-surface-color);
+  border-radius: 12px;
+  border-left: 4px solid var(--ifm-color-primary);
+}
+
+.best-practices-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.best-practice-card {
+  background-color: var(--ifm-background-surface-color);
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.best-practice-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+  border-color: var(--ifm-color-primary);
+}
+
+.best-practice-card h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--ifm-color-primary);
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.best-practice-card .card-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.best-practice-card .card-content {
+  flex: 1;
+}
+
+.best-practice-card ul,
+.best-practice-card ol {
+  margin: 0.75rem 0;
+  padding-left: 1.5rem;
+}
+
+.best-practice-card li {
+  margin: 0.5rem 0;
+}
+
+.best-practice-card .card-highlight {
+  background-color: var(--ifm-color-emphasis-100);
+  padding: 0.75rem;
+  border-radius: 6px;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.best-practice-card-full {
+  margin: 2rem 0;
+}
+
+/* Center images and tables in best practice cards */
+.best-practice-card .card-content img {
+  display: block;
+  margin: 1.5rem auto;
+  max-width: 100%;
+}
+
+.best-practice-card .card-content img + em,
+.best-practice-card .card-content img + p em {
+  display: block;
+  text-align: center;
+  margin: 0.5rem auto 1.5rem;
+  font-style: italic;
+}
+
+.best-practice-card .card-content table {
+  margin: 1.5rem auto;
+  width: auto;
+  min-width: 500px;
+}
+
+.best-practice-card .card-content table th:first-child,
+.best-practice-card .card-content table td:first-child {
+  white-space: nowrap;
+  min-width: 120px;
+}
+
+@media (max-width: 768px) {
+  .best-practices-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .best-practice-card .card-content table {
+    min-width: 100%;
+  }
+}
+
+/* Setup Overview Navigation Cards */
+.setup-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.setup-overview-card {
+  background-color: var(--ifm-background-surface-color);
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.setup-overview-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+  border-color: var(--ifm-color-primary);
+  text-decoration: none;
+  color: inherit;
+}
+
+.setup-overview-card h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--ifm-color-primary);
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+
+.setup-overview-card .card-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.setup-overview-card .card-content {
+  flex: 1;
+}
+
+.setup-overview-card .card-content strong {
+  color: var(--ifm-color-emphasis-1000);
+  display: block;
+  margin-top: 0.75rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.setup-overview-card .card-content ul {
+  margin: 0.5rem 0 0;
+  padding-left: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.setup-overview-card .card-content li {
+  margin: 0.25rem 0;
+}
+
+@media (max-width: 768px) {
+  .setup-overview-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Highlights Grid for Option 3 */
+.highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+  width: 100%;
+}
+
+.highlight-card {
+  background-color: var(--ifm-background-surface-color);
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 12px;
+  padding: 1rem;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.highlight-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+  border-color: var(--ifm-color-primary);
+}
+
+.highlight-card h2,
+.highlight-card h3 {
+  margin-top: 0 !important;
+  margin-bottom: 0.5rem !important;
+  color: var(--ifm-color-primary) !important;
+  font-size: 1.43rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.highlight-card .card-icon {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.highlight-card .card-content {
+  flex: 1;
+  font-size: 1em;
+  line-height: 1.5;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.highlights-badge-list {
+  margin: 1.5rem 0;
+}
+
+.highlights-badge-list li {
+  margin: 0.75rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Badge styling for Option 1 and 5 */
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.badge--success {
+  background-color: var(--ifm-color-success);
+  color: var(--ifm-color-success-contrast-foreground);
+}
+
+.badge--info {
+  background-color: var(--ifm-color-info);
+  color: var(--ifm-color-info-contrast-foreground);
+}
+
+.badge--primary {
+  background-color: var(--ifm-color-primary);
+  color: var(--ifm-color-primary-contrast-foreground);
+}
+
+.badge--warning {
+  background-color: var(--ifm-color-warning);
+  color: var(--ifm-color-warning-contrast-foreground);
+}
+
+.badge--secondary {
+  background-color: var(--ifm-color-secondary);
+  color: var(--ifm-color-secondary-contrast-foreground);
+}
+
+@media (max-width: 768px) {
+  .highlights-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Single column grid for full-width cards */
+.highlights-grid-single {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+  width: 100%;
 }
