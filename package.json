@@ -1,12 +1,13 @@
 {
   "name": "argus-vts-guide",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start --host 0.0.0.0",
-    "build": "docusaurus build",
-    "build:offline": "OFFLINE_BUILD=true docusaurus build",
+    "update-version": "node scripts/update-version.js",
+    "build": "npm run update-version && docusaurus build",
+    "build:offline": "npm run update-version && OFFLINE_BUILD=true docusaurus build",
     "build:mac": "npm run build:offline && bash create-mac-app.sh",
     "build:windows": "npm run build:offline && node create-windows-exe.js",
     "build:electron": "npm run build:offline && npm run electron:build",

@@ -1,5 +1,6 @@
 import Link from '@docusaurus/Link';
 import useBaseUrl from '@docusaurus/useBaseUrl';
+import VersionChecker from '@site/src/components/VersionChecker';
 import styles from './styles.module.css';
 
 const QuickStartIcon = () => (
@@ -89,6 +90,7 @@ export default function HomepageFeatures() {
           Full Manual
         </Link>
       </div>
+      <VersionChecker />
     </section>
   );
 }

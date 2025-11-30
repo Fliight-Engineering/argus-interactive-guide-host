@@ -1,0 +1,71 @@
+# Example workflow for pulling content from a private repository
+# 
+# To use this:
+# 1. Create a Fine-Grained PAT with read access to your private content repo
+# 2. Add it as a GitHub Secret named: CONTENT_REPO_TOKEN
+# 3. Update the repository URL below
+# 4. Rename this file to: update-content.yml (remove .example)
+# 5. Adjust the paths and branch names as needed
+
+name: Update Content from Private Repo
+
+on:
+  schedule:
+    # Run daily at 2 AM UTC (adjust timezone as needed)
+    - cron: '0 2 * * *'
+  workflow_dispatch:  # Allows manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  update-content:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout guide repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0  # Full history needed for subtree
+      
+      - name: Configure git
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+      
+      - name: Pull content from private repository
+        env:
+          CONTENT_TOKEN: ${{ secrets.CONTENT_REPO_TOKEN }}
+          CONTENT_REPO: "https://${CONTENT_TOKEN}@github.com/ORG/private-content-repo.git"
+        run: |
+          # Option 1: Using git subtree (recommended for merging content)
+          git remote add content-repo ${CONTENT_REPO} || true
+          git subtree pull --prefix=docs content-repo main --squash -m "Update content from private repo"
+          
+          # Option 2: Using git submodule (if you prefer submodules)
+          # git submodule update --remote --merge
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Build site
+        run: npm run build
+      
+      - name: Commit and push changes
+        run: |
+          git add .
+          git commit -m "Auto-update: Content from private repo [skip ci]" || exit 0
+          git push
+      
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
+

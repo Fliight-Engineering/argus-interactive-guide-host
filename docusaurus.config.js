@@ -85,7 +85,9 @@ const config = {
       // Social card for link previews
       image: 'img/vts-guide/image29.png',
       colorMode: {
-        respectPrefersColorScheme: true,
+        defaultMode: 'dark',
+        respectPrefersColorScheme: false,
+        disableSwitch: false,
       },
       navbar: {
         title: 'Argus VTS',
