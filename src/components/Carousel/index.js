@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
+import Link from '@docusaurus/Link';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import styles from './styles.module.css';
 
-export default function Carousel({ slides }) {
+export default function Carousel({ slides, backLink = '/quick-start/' }) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
@@ -21,12 +22,17 @@ export default function Carousel({ slides }) {
   }));
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % processedSlides.length);
+    if (currentSlide < processedSlides.length - 1) {
+      setCurrentSlide((prev) => prev + 1);
+    }
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + processedSlides.length) % processedSlides.length);
+    if (currentSlide > 0) {
+      setCurrentSlide((prev) => prev - 1);
+    }
   };
+
 
   const goToSlide = (index) => {
     setCurrentSlide(index);
@@ -47,9 +53,9 @@ export default function Carousel({ slides }) {
     const distance = touchStartX.current - touchEndX.current;
     const minSwipeDistance = 50;
 
-    if (distance > minSwipeDistance) {
+    if (distance > minSwipeDistance && currentSlide < processedSlides.length - 1) {
       nextSlide();
-    } else if (distance < -minSwipeDistance) {
+    } else if (distance < -minSwipeDistance && currentSlide > 0) {
       prevSlide();
     }
   };
@@ -62,18 +68,20 @@ export default function Carousel({ slides }) {
     }
 
     const handleKeyPress = (e) => {
-      if (e.key === 'ArrowLeft') {
-        setCurrentSlide((prev) => (prev - 1 + processedSlides.length) % processedSlides.length);
-      } else if (e.key === 'ArrowRight') {
-        setCurrentSlide((prev) => (prev + 1) % processedSlides.length);
+      if (e.key === 'ArrowLeft' && currentSlide > 0) {
+        setCurrentSlide((prev) => prev - 1);
+      } else if (e.key === 'ArrowRight' && currentSlide < processedSlides.length - 1) {
+        setCurrentSlide((prev) => prev + 1);
       }
     };
 
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [processedSlides.length]);
+  }, [processedSlides.length, currentSlide]);
 
   const currentSlideData = processedSlides[currentSlide];
+  const isFirstSlide = currentSlide === 0;
+  const isLastSlide = currentSlide === processedSlides.length - 1;
 
   return (
     <div className={styles.carouselContainer}>
@@ -83,6 +91,15 @@ export default function Carousel({ slides }) {
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
+        {/* Close button */}
+        <Link
+          to={backLink}
+          className={styles.closeButton}
+          aria-label="Close and return to Quick Start"
+        >
+          ×
+        </Link>
+
         {/* Main slide content */}
         <div className={styles.slideContent}>
           {currentSlideData.imageUrl && (
@@ -111,17 +128,38 @@ export default function Carousel({ slides }) {
                 ))}
               </ul>
             )}
+            {currentSlideData.table && (
+              <table className={styles.infoTable}>
+                <thead>
+                  <tr>
+                    {currentSlideData.table.headers.map((header, idx) => (
+                      <th key={idx}>{header}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {currentSlideData.table.rows.map((row, rowIdx) => (
+                    <tr key={rowIdx}>
+                      {row.map((cell, cellIdx) => (
+                        <td key={cellIdx}>{cell}</td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
           </div>
         </div>
 
         {/* Navigation */}
         <div className={styles.navigation}>
           <button
-            className={styles.navButton}
+            className={`${styles.navButton} ${isFirstSlide ? styles.navButtonDisabled : ''}`}
             onClick={prevSlide}
+            disabled={isFirstSlide}
             aria-label="Previous slide"
           >
-            ← Previous
+            ◀
           </button>
           
           <div className={styles.dots}>
@@ -136,11 +174,12 @@ export default function Carousel({ slides }) {
           </div>
           
           <button
-            className={styles.navButton}
+            className={`${styles.navButton} ${isLastSlide ? styles.navButtonDisabled : ''}`}
             onClick={nextSlide}
+            disabled={isLastSlide}
             aria-label="Next slide"
           >
-            Next →
+            ▶
           </button>
         </div>
 

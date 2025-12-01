@@ -18,7 +18,7 @@ const slides = [
     ]
   },
   {
-    title: 'Step 1: Launch Argus Software',
+    title: 'Launch Argus Software',
     image: '/img/vts-guide/argus-software.jpg',
     content: 'Open the Argus software on the trainer tablet.',
     steps: [
@@ -30,7 +30,7 @@ const slides = [
     ]
   },
   {
-    title: 'Step 2: Viewing Camera Feeds',
+    title: 'Viewing Camera Feeds',
     image: '/img/vts-guide/argus-software.jpg',
     content: 'Once the app is open with the system connected, the four camera feeds will start streaming automatically.',
     steps: [
@@ -41,8 +41,8 @@ const slides = [
     ]
   },
   {
-    title: 'Step 3: Full Screen View',
-    image: '/img/vts-guide/argus-software.jpg',
+    title: 'Full Screen View',
+    image: '/img/vts-guide/argus-app-full-screen.png',
     content: 'To view a camera feed in full screen for detailed observation.',
     steps: [
       'Double-tap any sidebar video feed',
@@ -52,7 +52,7 @@ const slides = [
     ]
   },
   {
-    title: 'Step 4: Start Recording',
+    title: 'Start Recording',
     image: '/img/vts-guide/argus-software.jpg',
     content: 'Record all camera feeds simultaneously for post-training review and coaching.',
     steps: [
@@ -70,11 +70,16 @@ const slides = [
     steps: [
       'Check the network health monitoring panel (lower right corner)',
       'Monitor both network bands: wlan0 (2.4GHz) and wlan1 (5GHz)',
-      '🟢 Green = Optimal connection quality, video streaming reliable',
-      '🟠 Orange = Functional connection, working but not optimal',
-      '🔴 Red = Poor connection, significant issues may occur',
       'Give network 1-2 minutes to stabilise after initial connection'
-    ]
+    ],
+    table: {
+      headers: ['Indicator', 'Status'],
+      rows: [
+        ['🟢 Green', 'Optimal connection quality, video streaming reliable'],
+        ['🟠 Orange', 'Functional connection, working but not optimal'],
+        ['🔴 Red', 'Poor connection, significant issues may occur']
+      ]
+    }
   },
   {
     title: 'Step 6: Recording Management',
@@ -103,14 +108,14 @@ const slides = [
   },
   {
     title: 'Ready for Training!',
+    image: '/img/vts-guide/ready-for-training.png',
     content: 'Your Argus VTS system is now fully operational and ready for training operations. The system will automatically maintain mesh connections and camera feeds during use.',
     steps: [
       '✅ All camera feeds are streaming',
       '✅ Network health is monitored',
       '✅ Recording capability is ready',
       '✅ System is maintaining connections',
-      'You can now begin remote training operations'
-    ]
+    ],
   }
 ];
 
@@ -124,13 +129,17 @@ export default function OperationQuickStart() {
           padding: '1rem 1rem 0', 
           width: '100%', 
           margin: 0, 
+          minHeight: 'calc(100vh - var(--ifm-navbar-height))',
           height: 'calc(100vh - var(--ifm-navbar-height))',
           backgroundImage: `url(${bannerUrl})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
           backgroundAttachment: 'fixed',
-          position: 'relative'
+          position: 'relative',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
         }}
       >
         <div 
@@ -146,21 +155,8 @@ export default function OperationQuickStart() {
             zIndex: 1
           }} 
         />
-        <div style={{ 
-          position: 'relative',
-          zIndex: 2,
-          marginBottom: '1rem', 
-          textAlign: 'center', 
-          maxWidth: '1400px', 
-          marginLeft: 'auto', 
-          marginRight: 'auto' 
-        }}>
-          <Link to="/quick-start/" className={styles.backLink}>
-            ← Back to Quick Start
-          </Link>
-        </div>
-        <div style={{ position: 'relative', zIndex: 2 }}>
-          <Carousel slides={slides} />
+        <div style={{ position: 'relative', zIndex: 2, width: '100%', marginTop: '-5vh' }}>
+          <Carousel slides={slides} backLink="/quick-start/" />
         </div>
       </div>
     </Layout>

@@ -9,27 +9,13 @@ const quickStartSections = [
     title: 'Setup',
     description: 'Complete physical deployment and power-on sequence. Get your system ready for operation.',
     image: '/img/vts-guide/setup-complete-banner.png',
-    link: '/quick-start/setup',
-    steps: [
-      'Machine AP physical setup',
-      'Mounting on vehicle',
-      'Camera positioning',
-      'Power-on sequence',
-      'System verification'
-    ]
+    link: '/quick-start/setup'
   },
   {
     title: 'Operation',
     description: 'Learn how to use the Argus software, view feeds, record sessions, and monitor network health.',
     image: '/img/vts-guide/argus-software.jpg',
-    link: '/quick-start/operation',
-    steps: [
-      'Launch Argus software',
-      'View camera feeds',
-      'Start recording',
-      'Monitor network health',
-      'Manage recordings'
-    ]
+    link: '/quick-start/operation'
   }
 ];
 
@@ -79,16 +65,8 @@ export default function QuickStart() {
                 <img src={section.imageUrl} alt={section.title} />
               </div>
               <div className={styles.cardContent}>
-                <div className={styles.cardIcon}>{section.icon}</div>
                 <h2 className={styles.cardTitle}>{section.title}</h2>
                 <p className={styles.cardDescription}>{section.description}</p>
-                {section.steps && (
-                  <ul className={styles.stepsPreview}>
-                    {section.steps.map((step, stepIdx) => (
-                      <li key={stepIdx}>{step}</li>
-                    ))}
-                  </ul>
-                )}
                 <div className={styles.cardLink}>
                   Start {section.title} →
                 </div>
@@ -97,8 +75,8 @@ export default function QuickStart() {
           ))}
           </div>
 
-          <div style={{ display: 'flex', justifyContent: 'center', marginTop: '2rem', width: '100%' }}>
-            <p style={{ color: '#ffffff', textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1rem', width: '100%' }}>
+            <p style={{ color: '#ffffff', textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)', fontSize: '0.9rem' }}>
               Need more detail? Check out the{' '}
               <Link to="/docs/setup-operation/" style={{ color: 'var(--ifm-color-primary)' }}>full manual</Link>
             </p>
