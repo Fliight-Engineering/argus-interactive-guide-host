@@ -1,41 +1,41 @@
-# Website
+# VTS Interactive Guide
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+Interactive documentation for Argus VTS system with offline desktop app support.
 
-## Installation
-
-```bash
-yarn
-```
-
-## Local Development
+## 🚀 Quick Start
 
 ```bash
-yarn start
+npm install
+npm start           # Dev server at http://localhost:3000
 ```
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
-
-## Build
+## 📦 Release
 
 ```bash
-yarn build
+npm run publish     # Bump patch version & release (1.0.4 → 1.0.5)
 ```
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
+## 📁 Project Structure
 
-## Deployment
-
-Using SSH:
-
-```bash
-USE_SSH=true yarn deploy
+```
+├── .github/workflows/    # CI/CD workflows
+├── docs/                 # Documentation content (Markdown)
+├── docs-internal/        # Developer documentation
+├── electron/             # Electron desktop app
+├── scripts/              # Build & utility scripts
+├── src/                  # React components & styles
+├── static/               # Static assets
+├── docusaurus.config.js  # Site configuration
+└── package.json          # Project config
 ```
 
-Not using SSH:
+## 📖 Documentation
 
-```bash
-GIT_USER=<Your GitHub username> yarn deploy
-```
+- [Developer Guide](docs-internal/DEVELOPER_GUIDE.md) - How to develop & release
+- [Template Guide](docs-internal/TEMPLATE_GUIDE.md) - Reuse for other projects
+- [Deployment Guide](docs-internal/DEPLOYMENT_AND_UPDATES.md) - Deployment details
 
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+## 🔗 Links
+
+- **Website**: https://fliight-engineering.github.io/argus-interactive-guide/
+- **Releases**: https://github.com/Fliight-Engineering/argus-interactive-guide/releases
