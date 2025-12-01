@@ -10,9 +10,9 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 // Determine baseUrl based on build type
 // For offline/local deployment, set OFFLINE_BUILD=true to use '/'
-// For GitHub Pages, use '/argus-interactive-guide-host/'
+// For GitHub Pages, use '/argus-interactive-guide/'
 const isOfflineBuild = process.env.OFFLINE_BUILD === 'true';
-const baseUrl = isOfflineBuild ? '/' : '/argus-interactive-guide-host/';
+const baseUrl = isOfflineBuild ? '/' : '/argus-interactive-guide/';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -33,7 +33,7 @@ const config = {
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'Fliight-Engineering', // Usually your GitHub org/user name.
-  projectName: 'argus-interactive-guide-host', // Usually your repo name.
+  projectName: 'argus-interactive-guide', // Usually your repo name.
 
   onBrokenLinks: 'throw',
 
