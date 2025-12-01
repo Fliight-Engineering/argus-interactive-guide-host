@@ -50,8 +50,7 @@
     "mac": {
       "category": "public.app-category.reference",
       "target": [
-        "dmg",
-        "zip"
+        "dmg"
       ],
       "icon": "../static/img/vts-guide/image29.png",
       "artifactName": "VTS-Guide-${version}-${arch}-mac.${ext}"

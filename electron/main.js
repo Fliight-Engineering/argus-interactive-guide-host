@@ -9,6 +9,10 @@ let mainWindow;
 let server;
 const PORT = 8080;
 
+// Check if auto-update is supported on this platform
+// macOS requires code signing certificate ($99/year Apple Developer Program)
+const isAutoUpdateSupported = process.platform !== 'darwin';
+
 // Auto-updater configuration
 autoUpdater.autoDownload = false;
 autoUpdater.autoInstallOnAppQuit = true;
@@ -312,12 +316,15 @@ app.whenReady().then(() => {
   createWindow();
 
   // Check for updates after window is created (only in production)
-  if (app.isPackaged) {
+  // Skip on macOS - auto-update requires Apple Developer certificate ($99/year)
+  if (app.isPackaged && isAutoUpdateSupported) {
     setTimeout(() => {
       autoUpdater.checkForUpdates().catch((err) => {
         console.error('Failed to check for updates:', err);
       });
     }, 3000); // Wait 3 seconds after app starts
+  } else if (app.isPackaged && !isAutoUpdateSupported) {
+    console.log('Auto-update disabled on macOS (requires code signing certificate)');
   }
 
   app.on('activate', () => {
