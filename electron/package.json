@@ -52,14 +52,14 @@
       "target": [
         "dmg"
       ],
-      "icon": "../static/img/vts-guide/image29.png",
+      "icon": "../static/img/vts-guide/argus-logo.png",
       "artifactName": "VTS-Guide-${version}-${arch}-mac.${ext}"
     },
     "win": {
       "target": [
         "nsis"
       ],
-      "icon": "../static/img/vts-guide/image29.png",
+      "icon": "../static/img/vts-guide/argus-logo.png",
       "artifactName": "VTS-Guide-${version}-${arch}.${ext}"
     },
     "linux": {
@@ -67,7 +67,7 @@
         "AppImage",
         "deb"
       ],
-      "icon": "../static/img/vts-guide/image29.png",
+      "icon": "../static/img/vts-guide/argus-logo.png",
       "category": "Documentation",
       "maintainer": "Fliight Engineering <support@fliight.com.au>",
       "artifactName": "VTS-Guide-${version}.${ext}"

@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.10] - 2025-12-01
+### Fixed
+- Fixed responsive layout for Surface Pro - buttons now stay horizontal on tablet screens
+- Fixed app icon - now uses Argus logo instead of default React icon
+- Adjusted breakpoint from 996px to 768px for vertical layout
+
 ## [1.0.9] - 2025-12-01
 ### Fixed
 - Progress bar now shows for minimum 2 seconds even if download is fast

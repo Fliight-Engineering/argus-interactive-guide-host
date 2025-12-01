@@ -91,21 +91,39 @@
   color: inherit;
 }
 
-@media screen and (max-width: 996px) {
+@media screen and (max-width: 768px) {
   .mainButton {
     min-width: 100%;
-    padding: 3rem 4rem;
-    font-size: 2.5rem;
-    gap: 2rem;
+    padding: 2rem 3rem;
+    font-size: 2rem;
+    gap: 1.5rem;
   }
 
   .buttonIcon {
-    width: 250px;
-    height: 250px;
+    width: 150px;
+    height: 150px;
   }
 
   .buttonsContainer {
     gap: 2rem;
     flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 1200px) and (min-width: 769px) {
+  .mainButton {
+    min-width: 350px;
+    padding: 2rem 3rem;
+    font-size: 2rem;
+    gap: 1.5rem;
+  }
+
+  .buttonIcon {
+    width: 150px;
+    height: 150px;
+  }
+
+  .buttonsContainer {
+    gap: 2rem;
   }
 }
