@@ -7,17 +7,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2025-12-02
+### Added
+- Custom window controls for Electron app (minimize, maximize, close)
+- Update modal component for better update notifications
+- New Quick Start images: argus-overview, launch-argus, view-feeds, start-recording, view-recordings
+- Preload script for better Electron security
+
+### Changed
+- Optimized Argus logo (reduced from 703KB to 55KB)
+- Optimized network-health.png (reduced from 57KB to 25KB)
+- Improved Quick Start operation page layout
+
+### Fixed
+- Fixed responsive layout for Surface Pro - buttons stay horizontal on tablet screens
+- Fixed app icon - now uses Argus logo instead of default React icon
+
 ## [1.0.10] - 2025-12-01
 ### Fixed
 - Fixed responsive layout for Surface Pro - buttons now stay horizontal on tablet screens
 - Fixed app icon - now uses Argus logo instead of default React icon
 - Adjusted breakpoint from 996px to 768px for vertical layout
 
-## [1.0.9] - 2025-12-01
-### Fixed
-- Progress bar now shows for minimum 2 seconds even if download is fast
-- Shows "100% Complete! Installing..." before restart dialog
-- Better visibility of download progress on fast connections
+
 
 ## [1.0.8] - 2025-12-01
 ### Added
