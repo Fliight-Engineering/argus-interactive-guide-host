@@ -12,15 +12,28 @@ The Argus VTS Guide uses a fully automated CI/CD pipeline:
 
 ```bash
 # Development
-npm start                    # Start local dev server
+make dev                     # Start local dev server
+make test-build              # Build Electron app locally
 
-# Release new version
+# Release new version (RECOMMENDED)
+make release "Your changelog message"
+
+# Traditional commands (still work)
 npm run publish              # Bump version, push, tag, trigger builds
+npm run bump                 # Manual version bump (1.0.0 → 1.0.1)
+```
 
-# Manual version bump
-npm run bump                 # Bump patch version (1.0.0 → 1.0.1)
-npm run bump minor           # Bump minor version (1.0.0 → 1.1.0)
-npm run bump major           # Bump major version (1.0.0 → 2.0.0)
+### Release Examples
+
+```bash
+# Simple one-liner with auto changelog
+make release "Fixed icon and responsive layout"
+
+# Multiple changes
+make release "Added progress bar, Fixed auto-update, Updated docs"
+
+# Check version before release
+make check-version
 ```
 
 ## How It Works
@@ -37,10 +50,16 @@ Edit code → git push → GitHub Pages updated
 - Builds Docusaurus and deploys to GitHub Pages
 - Great for dev/testing - changes visible immediately
 
-### 2. Release Flow
+### 2. Release Flow (New - Using Makefile)
 
 ```
-npm run publish
+make release "Your changelog message"
+       ↓
+Auto-add changelog entry to CHANGELOG.md
+       ↓
+Show preview + ask confirmation
+       ↓
+npm run publish (bump version, commit, tag)
        ↓
 Bump version (package.json, electron/package.json, static/version.json)
        ↓
@@ -48,11 +67,21 @@ Git commit + push + tag (v1.0.x)
        ↓
 GitHub Actions (.github/workflows/release-electron.yml)
        ↓
-Build Windows (.exe) + macOS (.dmg) + Linux (.AppImage, .deb)
+Build Windows (.exe) + Linux (.AppImage, .deb)
        ↓
 Create GitHub Release with changelog + artifacts
        ↓
 Desktop apps detect update and prompt user
+```
+
+**Note:** macOS build temporarily disabled - requires 1024x1024 icon.
+
+### 3. Traditional Release Flow (Still Works)
+
+```
+npm run publish
+       ↓
+(Same as above but requires manual CHANGELOG.md edit)
 ```
 
 ## Workflow Files

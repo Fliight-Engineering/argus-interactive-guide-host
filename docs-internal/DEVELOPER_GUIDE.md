@@ -4,36 +4,57 @@
 
 ### Development
 ```bash
-npm install          # Install dependencies
-npm start            # Run dev server (http://localhost:3000)
+make install         # Install dependencies
+make dev             # Run dev server (http://localhost:3000)
 ```
 
 ### Test Electron App Locally
 ```bash
-npm run build:offline           # Build Docusaurus for offline
-cd electron && npm start        # Run Electron app
+make test-build      # Build offline + Electron app
+                     # Check: artifacts/dist-electron/
+```
+
+### All Available Commands
+```bash
+make help            # Show all commands
+make dev             # Start dev server
+make build           # Build website
+make test-build      # Build Electron app locally
+make release "msg"   # Release with changelog
+make clean           # Clean build artifacts
+make check-version   # Show current version
 ```
 
 ---
 
 ## 📦 Release Workflow
 
-### Publish New Version
+### Simple Release (Recommended)
 ```bash
-# 1. Update CHANGELOG.md first!
-# 2. Then run publish
-npm run publish        # Patch: 1.0.4 → 1.0.5 (bug fixes)
-npm run publish:minor  # Minor: 1.0.5 → 1.1.0 (new features)
-npm run publish:major  # Major: 1.1.0 → 2.0.0 (breaking changes)
+make release "Your changelog message here"
+```
+
+**Example:**
+```bash
+make release "Fixed icon and responsive layout"
 ```
 
 **This command automatically:**
-1. ✅ Bumps version in `package.json` + `electron/package.json`
-2. ✅ Commits and pushes to GitHub
-3. ✅ Creates git tag and triggers build workflow
-4. ✅ Builds app for Windows, macOS, Linux
-5. ✅ Uploads to GitHub Releases with changelog
-6. ✅ Users with old app will receive update notification (Windows/Linux only)
+1. ✅ Auto-bumps patch version (1.0.13 → 1.0.14)
+2. ✅ Adds changelog entry with your message
+3. ✅ Shows preview and asks for confirmation
+4. ✅ Commits and pushes to GitHub
+5. ✅ Creates git tag and triggers build workflow
+6. ✅ Builds app for Windows & Linux (macOS disabled - needs icon)
+7. ✅ Uploads to GitHub Releases with changelog
+8. ✅ Users with old app will receive update notification (Windows/Linux only)
+
+### Traditional Release (Still Works)
+```bash
+# 1. Manually update CHANGELOG.md
+# 2. Then run publish
+npm run publish        # Patch: 1.0.4 → 1.0.5
+```
 
 ### Update Website Only (without releasing app)
 ```bash

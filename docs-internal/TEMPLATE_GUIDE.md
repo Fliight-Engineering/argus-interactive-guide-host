@@ -23,18 +23,25 @@ Template to create documentation website with offline desktop app and auto-updat
   └── release-electron.yml    # Build Electron apps
 
 electron/
-  ├── main.js                 # Electron main process
+  ├── main.js                 # Electron main process with auto-update
+  ├── preload.js              # Electron preload script
   └── package.json            # Electron config
 
 scripts/
   ├── bump-version.js         # Bump version script
-  └── update-version.js       # Update version.json
+  ├── update-version.js       # Update version.json
+  ├── release.sh              # Release automation script
+  └── add-changelog.sh        # Changelog helper (optional)
 
 static/
   └── version.json            # Runtime version info
 
 src/components/
-  └── VersionChecker/         # Version check component (optional)
+  ├── VersionChecker/         # Version check component (optional)
+  └── UpdateModal/            # Update notification modal (optional)
+
+Makefile                      # Simple workflow commands
+CHANGELOG.md                  # Release notes template
 ```
 
 ### Step 2: Update Config
@@ -67,17 +74,51 @@ src/components/
   "name": "your-project",
   "version": "1.0.0",
   "scripts": {
-    "bump": "node scripts/bump-version.js",
-    "bump:minor": "node scripts/bump-version.js minor",
-    "bump:major": "node scripts/bump-version.js major",
-    "publish": "npm run bump && git add -A && git commit -m \"chore: bump version\" && git push origin main && npm run release",
-    "publish:minor": "npm run bump:minor && git add -A && git commit -m \"chore: bump minor version\" && git push origin main && npm run release",
-    "publish:major": "npm run bump:major && git add -A && git commit -m \"chore: bump major version\" && git push origin main && npm run release",
-    "release": "node -e \"const v=require('./electron/package.json').version; require('child_process').execSync('git tag v'+v+' && git push origin v'+v, {stdio:'inherit'})\"",
+    "start": "docusaurus start",
+    "build": "docusaurus build",
     "build:offline": "npm run update-version && cross-env OFFLINE_BUILD=true docusaurus build",
-    "update-version": "node scripts/update-version.js"
+    "update-version": "node scripts/update-version.js",
+    "bump": "node scripts/bump-version.js",
+    "publish": "npm run bump && git add -A && git commit -m \"chore: bump version\" && git push origin main && npm run release",
+    "release": "node -e \"const v=require('./electron/package.json').version; require('child_process').execSync('git tag v'+v+' && git push origin v'+v, {stdio:'inherit'})\""
+  },
+  "dependencies": {
+    "@docusaurus/core": "^3.9.2",
+    "@docusaurus/preset-classic": "^3.9.2",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
   }
 }
+```
+
+#### `Makefile` (NEW - Simplified Workflow)
+```makefile
+.PHONY: help dev build test-build release clean
+
+help: ## Show all commands
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  %-15s %s\n", $$1, $$2}'
+
+dev: ## Start dev server
+	npm start
+
+build: ## Build website
+	npm run build
+
+test-build: ## Build Electron app locally
+	npm run build:offline
+	cd electron && npm ci && npm run build
+
+release: ## Release: make release "changelog message"
+	@./scripts/release.sh "$(filter-out $@,$(MAKECMDGOALS))"
+
+clean: ## Clean artifacts
+	rm -rf build/ artifacts/ .docusaurus/
+
+%:
+	@:
 ```
 
 #### `docusaurus.config.js`
@@ -112,13 +153,50 @@ const versionData = {
 ### Step 4: Install Dependencies
 
 ```bash
-npm install cross-env --save-dev
+make install         # Install all dependencies
+# Or manually:
+npm install
 cd electron && npm install
 ```
 
-### Step 5: First Release
+### Step 5: Test Locally
 
 ```bash
+make dev            # Start dev server
+make test-build     # Build Electron app
+```
+
+### Step 6: First Release
+
+```bash
+make release "Initial release"
+```
+
+---
+
+## 🎯 Usage
+
+### Development
+```bash
+make dev            # Start dev server
+make test-build     # Build and test Electron locally
+```
+
+### Release
+```bash
+make release "Fixed bugs and added features"
+```
+
+This single command:
+- ✅ Auto-bumps version
+- ✅ Auto-generates changelog
+- ✅ Commits, tags, and pushes
+- ✅ Triggers CI/CD builds
+
+### Traditional Method (still works)
+```bash
+# 1. Edit CHANGELOG.md manually
+# 2. Run:
 npm run publish
 ```
 
