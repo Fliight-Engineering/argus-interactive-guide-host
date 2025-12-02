@@ -138,13 +138,19 @@ export default function Carousel({ slides, backLink = '/quick-start/' }) {
                   </tr>
                 </thead>
                 <tbody>
-                  {currentSlideData.table.rows.map((row, rowIdx) => (
-                    <tr key={rowIdx}>
-                      {row.map((cell, cellIdx) => (
-                        <td key={cellIdx}>{cell}</td>
-                      ))}
-                    </tr>
-                  ))}
+                  {currentSlideData.table.rows.map((row, rowIdx) => {
+                    const indicatorColor = row[0] === 'Green' ? '#00B050' : 
+                                          row[0] === 'Orange' ? '#ff9800' : 
+                                          row[0] === 'Red' ? '#f44336' : 'inherit';
+                    return (
+                      <tr key={rowIdx}>
+                        <td style={{ fontWeight: 700, color: indicatorColor }}>{row[0]}</td>
+                        {row.slice(1).map((cell, cellIdx) => (
+                          <td key={cellIdx + 1}>{cell}</td>
+                        ))}
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             )}

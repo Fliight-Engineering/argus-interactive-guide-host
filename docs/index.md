@@ -2,7 +2,7 @@
 slug: /
 ---
 
-# Argus Video Training System (VTS)
+# Argus VTS Guide
 # User Guide
 
 Welcome to the Argus Video Training System user guide. This guide will help you deploy, test, and use the Argus VTS.

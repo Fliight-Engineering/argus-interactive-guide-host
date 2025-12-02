@@ -1,0 +1,43 @@
+.windowControls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: 0.5rem;
+}
+
+.controlButton {
+  background: transparent;
+  border: none;
+  color: var(--ifm-navbar-link-color);
+  font-size: 1.5rem;
+  font-weight: 300;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  padding: 0;
+  line-height: 1;
+}
+
+.controlButton:hover {
+  background: var(--ifm-color-emphasis-200);
+  color: var(--ifm-navbar-link-color);
+}
+
+[data-theme='dark'] .controlButton {
+  color: #ffffff;
+}
+
+[data-theme='dark'] .controlButton:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.controlButton:active {
+  transform: scale(0.95);
+}
+

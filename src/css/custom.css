@@ -144,6 +144,28 @@
   display: flex;
   align-items: center;
   height: 100%;
+  gap: 0;
+}
+
+/* Ensure navbar items are in a single row */
+.navbar__items--right {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 0;
+}
+
+/* Reorder navbar items using CSS order - will be set by JavaScript */
+.navbar__items--right > .navbar__item[data-order="1"] {
+  order: 1; /* Logo */
+}
+
+.navbar__items--right > .navbar__item[data-order="2"] {
+  order: 2; /* Theme toggle */
+}
+
+.navbar__items--right > .navbar__item[data-order="3"] {
+  order: 3; /* Window controls */
 }
 
 .navbar__item--right img {
@@ -180,6 +202,28 @@ img.fliight-logo-dark {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Window controls styling */
+#window-controls {
+  display: none; /* Hidden by default, shown via script if Electron is detected */
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#window-controls button:hover {
+  background: rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-theme='dark'] #window-controls button:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Ensure navbar right items container aligns properly */
+.navbar__item--right > div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 /* Image container for VTS kit */

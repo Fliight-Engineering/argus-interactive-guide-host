@@ -4,7 +4,7 @@ import styles from './styles.module.css';
 
 const CHECK_INTERVAL = 5 * 60 * 1000; // Check every 5 minutes
 
-export default function VersionChecker() {
+export default function VersionChecker({ testMode = false }) {
   const versionFileUrl = useBaseUrl('/version.json');
   const [currentVersion, setCurrentVersion] = useState(null);
   const [latestVersion, setLatestVersion] = useState(null);
@@ -24,11 +24,49 @@ export default function VersionChecker() {
     const cleanupOnline = setupOnlineListener();
     const cleanupPeriodic = startPeriodicCheck();
     
+    // Listen for test update event
+    const handleTestUpdate = () => {
+      if (currentVersion) {
+        // Simulate a newer version
+        const versionParts = currentVersion.split('.');
+        const major = parseInt(versionParts[0]) || 1;
+        const minor = parseInt(versionParts[1]) || 0;
+        const patch = parseInt(versionParts[2]) || 0;
+        const newVersion = `${major}.${minor}.${patch + 1}`;
+        setLatestVersion(newVersion);
+        setUpdateAvailable(true);
+        setIsOnline(true);
+        setIsChecking(false);
+      }
+    };
+    
+    if (typeof window !== 'undefined') {
+      window.addEventListener('test-update-available', handleTestUpdate);
+    }
+    
     return () => {
       if (cleanupOnline) cleanupOnline();
       if (cleanupPeriodic) cleanupPeriodic();
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('test-update-available', handleTestUpdate);
+      }
     };
-  }, []);
+  }, [currentVersion]);
+  
+  // Handle test mode prop
+  useEffect(() => {
+    if (testMode && currentVersion) {
+      const versionParts = currentVersion.split('.');
+      const major = parseInt(versionParts[0]) || 1;
+      const minor = parseInt(versionParts[1]) || 0;
+      const patch = parseInt(versionParts[2]) || 0;
+      const newVersion = `${major}.${minor}.${patch + 1}`;
+      setLatestVersion(newVersion);
+      setUpdateAvailable(true);
+      setIsOnline(true);
+      setIsChecking(false);
+    }
+  }, [testMode, currentVersion]);
 
   const loadCurrentVersion = async () => {
     try {

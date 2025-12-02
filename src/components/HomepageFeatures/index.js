@@ -1,6 +1,8 @@
 import Link from '@docusaurus/Link';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import VersionChecker from '@site/src/components/VersionChecker';
+import UpdateModal from '@site/src/components/UpdateModal';
+import React, { useState, useEffect } from 'react';
 import styles from './styles.module.css';
 
 const QuickStartIcon = () => (
@@ -63,6 +65,36 @@ const ManualIcon = () => (
 
 export default function HomepageFeatures() {
   const bannerUrl = useBaseUrl('/img/vts-guide/main-banner.png');
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
+  const [currentVersion, setCurrentVersion] = useState('1.0.10');
+  const [latestVersion, setLatestVersion] = useState('1.0.11');
+  
+  useEffect(() => {
+    // Load current version
+    const loadVersion = async () => {
+      try {
+        const response = await fetch('/version.json');
+        if (response.ok) {
+          const data = await response.json();
+          setCurrentVersion(data.version || '1.0.10');
+        }
+      } catch (e) {
+        // Use default
+      }
+    };
+    loadVersion();
+  }, []);
+  
+  const handleTestUpdate = () => {
+    // Calculate next version
+    const versionParts = currentVersion.split('.');
+    const major = parseInt(versionParts[0]) || 1;
+    const minor = parseInt(versionParts[1]) || 0;
+    const patch = parseInt(versionParts[2]) || 0;
+    const newVersion = `${major}.${minor}.${patch + 1}`;
+    setLatestVersion(newVersion);
+    setShowUpdateModal(true);
+  };
   
   return (
     <section 
@@ -89,8 +121,21 @@ export default function HomepageFeatures() {
           <ManualIcon />
           Full Manual
         </Link>
+        <button
+          onClick={handleTestUpdate}
+          className={styles.testButton}
+          title="Test update UI"
+        >
+          Test Update
+        </button>
       </div>
       <VersionChecker />
+      <UpdateModal
+        isOpen={showUpdateModal}
+        onClose={() => setShowUpdateModal(false)}
+        currentVersion={currentVersion}
+        latestVersion={latestVersion}
+      />
     </section>
   );
 }

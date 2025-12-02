@@ -19,7 +19,7 @@ const slides = [
   },
   {
     title: 'Launch Argus Software',
-    image: '/img/vts-guide/argus-software.jpg',
+    image: '/img/vts-guide/launch-argus.png',
     content: 'Open the Argus software on the trainer tablet.',
     steps: [
       'Locate Argus software (usually pinned to taskbar or start menu)',
@@ -53,7 +53,7 @@ const slides = [
   },
   {
     title: 'Start Recording',
-    image: '/img/vts-guide/argus-software.jpg',
+    image: '/img/vts-guide/start-recording.png',
     content: 'Record all camera feeds simultaneously for post-training review and coaching.',
     steps: [
       'Click the "Start Recording" button in the Argus interface',
@@ -64,26 +64,25 @@ const slides = [
     ]
   },
   {
-    title: 'Step 5: Network Health Monitoring',
+    title: 'Network Health Monitoring',
     image: '/img/vts-guide/network-health.png',
     content: 'Monitor the mesh network connection quality in real-time using the network health panel located in the lower right corner of the Argus application.',
     steps: [
-      'Check the network health monitoring panel (lower right corner)',
-      'Monitor both network bands: wlan0 (2.4GHz) and wlan1 (5GHz)',
-      'Give network 1-2 minutes to stabilise after initial connection'
+      'Check the network health monitoring panel (lower left corner)',
+      'Give network a minutes to stabilise after initial connection'
     ],
     table: {
       headers: ['Indicator', 'Status'],
       rows: [
-        ['🟢 Green', 'Optimal connection quality, video streaming reliable'],
-        ['🟠 Orange', 'Functional connection, working but not optimal'],
-        ['🔴 Red', 'Poor connection, significant issues may occur']
+        ['Green', 'Optimal connection quality, video streaming reliable'],
+        ['Orange', 'Functional connection, working but not optimal'],
+        ['Red', 'Poor connection, significant issues may occur']
       ]
     }
   },
   {
-    title: 'Step 6: Recording Management',
-    image: '/img/vts-guide/argus-software.jpg',
+    title: 'Recording Management',
+    image: '/img/vts-guide/view-recordings.png',
     content: 'Access and manage your recorded training sessions.',
     steps: [
       'Click "Open Recording Directory" button to access saved recordings',
@@ -94,16 +93,16 @@ const slides = [
     ]
   },
   {
-    title: 'Step 7: Argus Interface Overview',
-    image: '/img/vts-guide/argus-software.jpg',
+    title: 'Argus Interface Overview',
+    image: '/img/vts-guide/argus-overview.png',
     content: 'The Argus interface provides all the controls you need for training operations.',
     steps: [
-      'Start/Stop recording all connected camera feeds',
-      'Quick camera view adjustment button',
-      'Open recording directory folder in Explorer',
-      'Application Settings access',
-      'Expand and close application buttons',
-      'Network Health Monitoring Panel (lower right)'
+      'A. Start/Stop recording all connected camera feeds',
+      'B. Quick camera view adjustment button',
+      'C. Open recording directory folder in Explorer',
+      'D. Application Settings access',
+      'E. Expand and close application buttons',
+      'F. Network Health Monitoring Panel (lower right)'
     ]
   },
   {

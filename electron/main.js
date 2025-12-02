@@ -471,6 +471,7 @@ function createWindow() {
         webPreferences: {
           nodeIntegration: false,
           contextIsolation: true,
+          preload: path.join(__dirname, 'preload.js'),
         },
         icon: path.join(__dirname, '..', 'static', 'img', 'vts-guide', 'image29.png'),
         title: 'VTS Guide',
@@ -487,6 +488,19 @@ function createWindow() {
       // Handle window closed
       mainWindow.on('closed', () => {
         mainWindow = null;
+      });
+
+      // IPC handlers for window controls
+      ipcMain.handle('window-minimize', () => {
+        if (mainWindow) {
+          mainWindow.minimize();
+        }
+      });
+
+      ipcMain.handle('window-close', () => {
+        if (mainWindow) {
+          mainWindow.close();
+        }
       });
     })
     .catch((err) => {
