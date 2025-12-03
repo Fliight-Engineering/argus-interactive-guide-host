@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.16] - 2025-12-03
+### Changed
+- Improved highlight cards: 2-column layout for better readability, fixed text wrapping without hyphenation, optimized for Surface Pro display
+
 ## [1.0.15] - 2025-12-03
 ### Changed
 - Fix window size and functional exit and minimize button inside document, fix css issue with scroll bar and text wrapper
