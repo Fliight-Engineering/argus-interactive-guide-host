@@ -1007,6 +1007,7 @@ h2 + .rcs-section-container {
   gap: 1.5rem;
   margin: 1.5rem 0;
   width: 100%;
+  overflow-x: hidden;
 }
 
 .highlight-card {
@@ -1017,6 +1018,8 @@ h2 + .rcs-section-container {
   transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .highlight-card:hover {
@@ -1033,7 +1036,11 @@ h2 + .rcs-section-container {
   font-size: 1.43rem;
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 0.5rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  min-width: 0;
 }
 
 .highlight-card .card-icon {
@@ -1046,6 +1053,9 @@ h2 + .rcs-section-container {
   font-size: 1em;
   line-height: 1.5;
   color: var(--ifm-color-emphasis-700);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 .highlights-badge-list {
@@ -1124,7 +1134,7 @@ article {
 /* Ensure markdown content doesn't overflow into sidebar */
 .markdown {
   max-width: 100%;
-  overflow-x: auto;
+  overflow-x: hidden;
   word-wrap: break-word;
   overflow-wrap: break-word;
 }

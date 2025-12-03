@@ -475,13 +475,13 @@ function createWindow() {
         },
         icon: path.join(__dirname, '..', 'static', 'img', 'vts-guide', 'argus-logo.png'),
         title: 'VTS Guide',
-        // Start maximized (fullscreen)
+        // Start in fullscreen (F11 mode - no window borders)
+        fullscreen: true,
         show: false, // Don't show until ready
       });
 
-      // Maximize window when ready
+      // Show window when ready
       mainWindow.once('ready-to-show', () => {
-        mainWindow.maximize();
         mainWindow.show();
       });
 

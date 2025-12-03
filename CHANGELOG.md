@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.15] - 2025-12-03
+### Changed
+- Fix window size and functional exit and minimize button inside document, fix css issue with scroll bar and text wrapper
+
 ## [1.0.14] - 2025-12-03
 ### Changed
 - Fixed window controls not working, app now starts maximized, fixed content overflow at 250% scale, removed unnecessary scrollbars in carousel

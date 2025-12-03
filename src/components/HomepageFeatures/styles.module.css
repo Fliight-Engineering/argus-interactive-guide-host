@@ -53,14 +53,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
-  padding: 3rem 4rem;
-  min-width: 450px;
-  max-width: 500px;
-  font-size: 2.5rem;
+  gap: 1.5rem;
+  padding: 2.5rem 3rem;
+  min-width: 420px;
+  max-width: 480px;
+  font-size: 2rem;
   font-weight: 700;
   text-decoration: none;
-  border-radius: 16px;
+  border-radius: 12px;
   transition: all 0.3s ease;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   background-color: var(--ifm-background-surface-color);
@@ -85,8 +85,8 @@
 }
 
 .buttonIcon {
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   flex-shrink: 0;
   color: inherit;
 }
